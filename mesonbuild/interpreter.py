@@ -2063,8 +2063,8 @@ requirements use the version keyword argument instead.''')
         if not isinstance(cmd_args, list):
             cmd_args = [cmd_args]
         for i in cmd_args:
-            if not isinstance(i, (str, mesonlib.File)):
-                raise InterpreterException('Command line arguments must be strings')
+            if not isinstance(i, (str, mesonlib.File, BuildTargetHolder)):
+                raise InterpreterException('Command line arguments must be strings, files or targets.')
         env = self.unpack_env_kwarg(kwargs)
         should_fail = kwargs.get('should_fail', False)
         if not isinstance(should_fail, bool):
